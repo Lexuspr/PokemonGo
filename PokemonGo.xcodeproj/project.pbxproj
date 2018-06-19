@@ -13,6 +13,10 @@
 		28A94F6B20D836C900443DF0 /* PokemonGo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28A94F6920D836C900443DF0 /* PokemonGo.xcdatamodeld */; };
 		28A94F6D20D836CC00443DF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28A94F6C20D836CC00443DF0 /* Assets.xcassets */; };
 		28A94F7020D836CC00443DF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A94F6E20D836CC00443DF0 /* LaunchScreen.storyboard */; };
+		28A94F7920D837AB00443DF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A94F7820D837AB00443DF0 /* MapKit.framework */; };
+		28A94F7B20D844F400443DF0 /* PokedexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A94F7A20D844F400443DF0 /* PokedexViewController.swift */; };
+		28A94F7D20D8463F00443DF0 /* Funciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A94F7C20D8463F00443DF0 /* Funciones.swift */; };
+		28A94F7F20D84F7C00443DF0 /* PokePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A94F7E20D84F7C00443DF0 /* PokePin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		28A94F6C20D836CC00443DF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28A94F6F20D836CC00443DF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28A94F7120D836CC00443DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28A94F7820D837AB00443DF0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		28A94F7A20D844F400443DF0 /* PokedexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexViewController.swift; sourceTree = "<group>"; };
+		28A94F7C20D8463F00443DF0 /* Funciones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funciones.swift; sourceTree = "<group>"; };
+		28A94F7E20D84F7C00443DF0 /* PokePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokePin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28A94F7920D837AB00443DF0 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +51,7 @@
 			children = (
 				28A94F6120D836C900443DF0 /* PokemonGo */,
 				28A94F6020D836C900443DF0 /* Products */,
+				28A94F7720D837AB00443DF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +73,19 @@
 				28A94F6E20D836CC00443DF0 /* LaunchScreen.storyboard */,
 				28A94F7120D836CC00443DF0 /* Info.plist */,
 				28A94F6920D836C900443DF0 /* PokemonGo.xcdatamodeld */,
+				28A94F7A20D844F400443DF0 /* PokedexViewController.swift */,
+				28A94F7C20D8463F00443DF0 /* Funciones.swift */,
+				28A94F7E20D84F7C00443DF0 /* PokePin.swift */,
 			);
 			path = PokemonGo;
+			sourceTree = "<group>";
+		};
+		28A94F7720D837AB00443DF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28A94F7820D837AB00443DF0 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +159,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28A94F7F20D84F7C00443DF0 /* PokePin.swift in Sources */,
 				28A94F6520D836C900443DF0 /* ViewController.swift in Sources */,
+				28A94F7B20D844F400443DF0 /* PokedexViewController.swift in Sources */,
 				28A94F6320D836C900443DF0 /* AppDelegate.swift in Sources */,
 				28A94F6B20D836C900443DF0 /* PokemonGo.xcdatamodeld in Sources */,
+				28A94F7D20D8463F00443DF0 /* Funciones.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
