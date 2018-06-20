@@ -43,9 +43,21 @@
                                     <segue destination="GaZ-hl-pcV" kind="presentation" identifier="pokedexSegue" modalTransitionStyle="crossDissolve" id="wPn-nK-LB1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSc-ym-yGm">
+                                <rect key="frame" x="10" y="40" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="gsE-jD-UuJ"/>
+                                    <constraint firstAttribute="width" constant="50" id="iQk-Hb-6RN"/>
+                                </constraints>
+                                <state key="normal" image="area"/>
+                                <connections>
+                                    <action selector="areaTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gth-pB-TsX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="pSc-ym-yGm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="7ya-16-jfa"/>
                             <constraint firstItem="egS-qA-46I" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="O8d-fp-abZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="38Y-uV-cs0" secondAttribute="bottom" constant="20" id="OmH-8N-Jnr"/>
                             <constraint firstItem="UrZ-OI-z7V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="UgD-cY-die"/>
@@ -53,6 +65,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UrZ-OI-z7V" secondAttribute="trailing" id="f5g-lx-5Xf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="egS-qA-46I" secondAttribute="trailing" constant="10" id="fA9-tM-a6V"/>
                             <constraint firstItem="38Y-uV-cs0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n5F-fa-LdB"/>
+                            <constraint firstItem="pSc-ym-yGm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="vTK-3h-eZR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UrZ-OI-z7V" secondAttribute="bottom" id="wKi-h4-3Ei"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -63,6 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="207" y="34"/>
         </scene>
         <!--Pokedex View Controller-->
         <scene sceneID="7EO-dR-9gH">
@@ -109,6 +123,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="area" width="512" height="512"/>
         <image name="compass" width="512" height="512"/>
         <image name="map" width="512" height="512"/>
         <image name="pokeball" width="512" height="512"/>

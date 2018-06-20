@@ -14,12 +14,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var ubicacion = CLLocationManager()
     var contActualizaciones = 0
     var pokemons:[Pokemon] = []
+    var pins:[PokePin] = []
+    var enabled:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ubicacion.delegate = self
         pokemons = obtenerPokemon()
+        mapView.showsPointsOfInterest = true
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
             setup()
@@ -42,6 +45,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 let randomLon = (Double(arc4random_uniform(200))-100.0)/5000.0
                 pin.coordinate.latitude += randomLat
                 pin.coordinate.longitude += randomLon
+                self.pins.append(pin)
+                
                 self.mapView.addAnnotation(pin)
             }
         })
@@ -56,6 +61,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             ubicacion.stopUpdatingLocation()
         }
         
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKCircleRenderer(overlay: overlay)
+        renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
+        renderer.strokeColor = UIColor.blue
+        renderer.lineWidth = 2
+        return renderer
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -85,7 +98,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if view.annotation is MKUserLocation {
             return
         }
-        let region = MKCoordinateRegionMakeWithDistance((view.annotation?.coordinate)!, 500, 500)
+        let region = MKCoordinateRegionMakeWithDistance((view.annotation?.coordinate)!, 300, 300)
         mapView.setRegion(region, animated: true)
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
@@ -99,7 +112,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                             pokemon.atrapado = true
                             pokemon.cantidad += 1
                             (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                            var cont = 0
+                            for pin in self.pins {
+                                if pin.coordinate.latitude == view.annotation!.coordinate.latitude && pin.coordinate.longitude == view.annotation!.coordinate.longitude {
+                                    self.pins.remove(at: cont)
+                                }
+                                cont += 1
+                            }
+                            
+                            for overlay in mapView.overlays {
+                                if overlay.coordinate.latitude == view.annotation!.coordinate.latitude && overlay.coordinate.longitude == view.annotation!.coordinate.longitude {
+                                    mapView.remove(overlay)
+                                }
+                            }
                             mapView.removeAnnotation(view.annotation!)
+                            //mapView.remove(overlay)
                         })
                         alertaVC.addAction(yesAction)
                         let noAction = UIAlertAction(title: "No", style: .default, handler: nil)
@@ -109,6 +136,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         //empieza atrapar pokemon
                         pokemon.atrapado = true
                         pokemon.cantidad += 1
+                        var cont = 0
+                        for pin in self.pins {
+                            if pin.coordinate.latitude == view.annotation!.coordinate.latitude && pin.coordinate.longitude == view.annotation!.coordinate.longitude {
+                                self.pins.remove(at: cont)
+                            }
+                            cont += 1
+                        }
+                        for overlay in mapView.overlays {
+                            if overlay.coordinate.latitude == view.annotation!.coordinate.latitude && overlay.coordinate.longitude == view.annotation!.coordinate.longitude {
+                                mapView.remove(overlay)
+                            }
+                        }
                         (UIApplication.shared.delegate as! AppDelegate).saveContext()
                         mapView.removeAnnotation(view.annotation!)
                         //mensaje atrapar Pokemon
@@ -140,6 +179,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
 
+    @IBAction func areaTapped(_ sender: UIButton) {
+        enabled = !enabled
+        print(enabled)
+        let overlays = pins.map { MKCircle(center: $0.coordinate, radius: 100)}
+        if enabled {
+            self.mapView.addOverlays(overlays)
+        } else {
+            self.mapView.removeOverlays(mapView.overlays)
+        }
+    }
     @IBAction func centrarTapped(_ sender: UIButton) {
         if let coord = ubicacion.location?.coordinate{
             let region = MKCoordinateRegionMakeWithDistance(coord, 1000, 1000)
